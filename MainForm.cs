@@ -66,7 +66,7 @@ namespace AminPhoneBook {
   List<string> ParseCsv(string s){var r=new List<string>();var b=new StringBuilder();bool q=false;foreach(char c in s){if(c=='"'){q=!q;continue;}if(c==','&&!q){r.Add(b.ToString());b.Clear();}else b.Append(c);}r.Add(b.ToString());return r;}
   string E(string s){return """+(s??"").Replace(""","""")+""";}
   void Settings(){using(var f=new SettingsForm(data.Settings)){if(f.ShowDialog(this)==DialogResult.OK){store.Save(data);theme=ThemeColors.Get(data.Settings);Rebuild();}}}
-  void Rebuild(){foreach(Control c in Controls.OfType<Control>().ToList())if(!(c is MenuStrip))Controls.Remove(c);Build();BackColor=theme.Background;Invalidate();}
+  void Rebuild(){foreach(Control c in Controls.OfType<Control>().ToList()){Controls.Remove(c);c.Dispose();}Build();BackColor=theme.Background;Invalidate();}
   void CheckReminders(){var now=DateTime.Now;foreach(var c in data.Contacts.Where(x=>!x.Deleted&&x.NextReminder.HasValue&&x.NextReminder.Value<=now&&x.NextReminder.Value>now.AddMinutes(-2)))MessageBox.Show("یادآوری برای "+c.FullName+"\r\n"+c.ReminderText,"یادآوری",MessageBoxButtons.OK,MessageBoxIcon.Information);}
  }
 }
