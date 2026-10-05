@@ -13,7 +13,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
       - name: Build
         shell: pwsh
-        run: msbuild .\AminPhoneBook.csproj /p:Configuration=Release /p:Platform="Any CPU" /m
+        run: msbuild .\AminPhoneBook.csproj /p:Configuration=Release /p:Platform=AnyCPU /m
       - name: Package
         shell: pwsh
         run: |
