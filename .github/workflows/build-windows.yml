@@ -9,13 +9,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
       - name: Build
         shell: pwsh
         run: msbuild .\AminPhoneBook.csproj /p:Configuration=Release /p:Platform="Any CPU" /m
       - name: Package
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force artifacts | Out-Null
+          New-Item -ItemType Directory -Force -Path artifacts | Out-Null
           Copy-Item .\bin\Release\AminPhoneBook.exe .\artifacts\WinPhoneBook.exe
           Compress-Archive -Path .\artifacts\WinPhoneBook.exe -DestinationPath .\artifacts\WinPhoneBook.zip -Force
       - name: Upload
