@@ -1,0 +1,25 @@
+name: Build WinPhoneBook
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build
+        shell: pwsh
+        run: msbuild .\AminPhoneBook.csproj /p:Configuration=Release /p:Platform="Any CPU" /m
+      - name: Package
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force artifacts | Out-Null
+          Copy-Item .\bin\Release\AminPhoneBook.exe .\artifacts\WinPhoneBook.exe
+          Compress-Archive -Path .\artifacts\WinPhoneBook.exe -DestinationPath .\artifacts\WinPhoneBook.zip -Force
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: WinPhoneBook-Windows
+          path: artifacts/WinPhoneBook.zip
