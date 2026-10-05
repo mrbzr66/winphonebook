@@ -9,3 +9,4 @@ namespace AminPhoneBook {
    using(var f=new PasswordForm()){if(f.ShowDialog()!=DialogResult.OK)return;Application.Run(new MainForm(f.Password));}
   }
 }
+}
