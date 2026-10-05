@@ -10,6 +10,9 @@ namespace AminPhoneBook {
   public string ReminderText{get;set;}=""; public DateTime CreatedAt{get;set;}=DateTime.Now; public DateTime UpdatedAt{get;set;}=DateTime.Now;
   public string FullName{get{return(FirstName+" "+LastName).Trim();}}
  }
- [Serializable] public class AppSettings { public bool DarkMode{get;set;} public bool AutoBackup{get;set;}=true; public int AutoBackupDays{get;set;}=7; public bool MinimizeToTray{get;set;} public bool ConfirmDelete{get;set;}=true; }
- [Serializable] public class PhoneBookData { public int Version{get;set;}=2; public List<Contact> Contacts{get;set;}=new List<Contact>(); public List<string> Groups{get;set;}=new List<string>(); public AppSettings Settings{get;set;}=new AppSettings(); }
+ [Serializable] public class AppSettings {
+  public bool DarkMode{get;set;} public bool AutoBackup{get;set;}=true; public int AutoBackupDays{get;set;}=7;
+  public bool MinimizeToTray{get;set;} public bool ConfirmDelete{get;set;}=true; public string Theme{get;set;}="Ocean";
+ }
+ [Serializable] public class PhoneBookData { public int Version{get;set;}=3; public List<Contact> Contacts{get;set;}=new List<Contact>(); public List<string> Groups{get;set;}=new List<string>(); public AppSettings Settings{get;set;}=new AppSettings(); }
 }
