@@ -34,7 +34,7 @@ namespace AminPhoneBook {
    Shown+=(s1,e)=>Ui.FadeIn(this);
   }
   void AddTheme(TableLayoutPanel host,string key,string title,ThemeColors t,int column){
-   var b=new AnimatedButton{Text=title+"\r\n"+key,Dock=DockStyle.Fill,Height=88,Margin=new Padding(5),Font=new Font("Tahoma",9,FontStyle.Bold),BackColor=t.Accent,ForeColor=Color.White,FlatStyle=FlatStyle.Flat,Cursor=Cursors.Hand};
+   var b=Ui.Button(title+"\r\n"+key,t,true);b.Dock=DockStyle.Fill;b.Height=88;b.Margin=new Padding(5);
    b.FlatAppearance.BorderSize=0;
    b.Click+=(s,e)=>{themeCombo.SelectedItem=key;};
    host.Controls.Add(b,column,0);
