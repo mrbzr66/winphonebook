@@ -47,6 +47,7 @@
     <Compile Include="ContactForm.cs" />
     <Compile Include="ReminderForm.cs" />
     <Compile Include="SettingsForm.cs" />
+    <Compile Include="ModernUI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
